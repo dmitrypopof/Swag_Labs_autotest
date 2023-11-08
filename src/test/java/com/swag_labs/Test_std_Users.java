@@ -1,7 +1,9 @@
 package com.swag_labs;
 
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
 
+import static com.codeborne.selenide.Selectors.byId;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
@@ -10,6 +12,10 @@ public class Test_std_Users {
     @Test
     public void openPageStart(){
         open("https://www.saucedemo.com/");
+        $(byId("user-name")).setValue("standard_user");
+        $(byId("password")).setValue("secret_sauce");
+        $(byId("login-button")).click();
+
 
 
     }
