@@ -15,8 +15,13 @@ public class Test_std_Users {
         $(byId("user-name")).setValue("standard_user");
         $(byId("password")).setValue("secret_sauce");
         $(byId("login-button")).click();
+    }
 
+    @Test
+    public void openMainPageStart(){
+        MainPage page =
+        open("https://www.saucedemo.com/", MainPage.class);
 
-
+        page.logStdUser("standard_user","secret_sauce");
     }
 }
