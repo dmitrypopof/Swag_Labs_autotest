@@ -17,6 +17,9 @@ public class MainPage {
     public void logStdUser(String user, String password){
         emailField.setValue(user);
         passField.setValue(password);
+    }
+
+    public void pressEnter(){
         butLogin.click();
     }
 }
