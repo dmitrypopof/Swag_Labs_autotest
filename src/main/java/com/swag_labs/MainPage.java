@@ -1,25 +1,24 @@
 package com.swag_labs;
 
 import com.codeborne.selenide.SelenideElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.How;
+import org.openqa.selenium.By;
+
+import static com.codeborne.selenide.Selenide.$;
 
 public class MainPage {
-    @FindBy(how = How.ID,using = "user-name")
-    private SelenideElement emailField;
+    public static final String URL = "https://www.saucedemo.com/";
+    private final SelenideElement emailField= $(By.id("user-name"));
+    private final SelenideElement passField = $(By.id("password"));
+    private final SelenideElement butLogin = $(By.id("login-button"));
 
-    @FindBy(how = How.ID,using = "password")
-    private SelenideElement passField;
-
-    @FindBy(how = How.ID,using = "login-button")
-    private SelenideElement butLogin;
-
-    public void logStdUser(String user, String password){
+    public MainPage logStdUser(String user, String password){
         emailField.setValue(user);
         passField.setValue(password);
+        return this;
     }
 
-    public void pressEnter(){
+    public MainPage pressEnter(){
         butLogin.click();
+        return this;
     }
 }

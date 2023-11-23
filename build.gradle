@@ -1,6 +1,7 @@
 plugins {
     id 'java'
-    id "org.gradle.test-retry" version "1.5.3" //плагин, который позволяет перезапускать упавшие тесты.
+    //id "org.gradle.test-retry" version "1.5.3" //плагин, который позволяет перезапускать упавшие тесты.
+
 }
 
 group 'org.example'
@@ -11,49 +12,27 @@ repositories {
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
-
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
     implementation 'com.codeborne:selenide:6.19.1'
 
-
-    //убрать навязчивую ошибку о slf4j
+    //убрать навязчивую ошибку о slf4j:
     testImplementation("org.slf4j:slf4j-simple:2.0.0")
     implementation("com.typesafe:config:1.4.2")
     implementation("org.assertj:assertj-core:3.23.1")
 
 }
-
-test {
-    // Задача для запуска тестов с тегом "smoke", добавим аннотации Tag("smoke")
-tasks.register('smoke', Test) {
-    testLogging {
-        events "passed", "skipped", "failed", "standardOut", "standardError"
-        exceptionFormat "full"
-    }
-    useJUnitPlatform {
-        includeTags("smoke")
-    }
-}
-
-    // Задача для запуска тестов с тегом "regress", добавим аннотации Tag("regress")
-    tasks.register('regress', Test) {
-        testLogging {
-            events "passed", "skipped", "failed", "standardOut", "standardError"
-            exceptionFormat "full"
-        }
-        useJUnitPlatform {
-            includeTags("regress")
-        }
-    }
-
-
-    retry {
-        maxRetries = 3 // к плагину, org.gradle.test-retry который позволяет перезапускать упавшие тесты.
-    }
-    testLogging {
-        events "passed", "skipped", "failed", "standardOut", "standardError"
-        exceptionFormat "full"
-    }
+tasks.named('test', Test) {
     useJUnitPlatform()
+
+    maxHeapSize = '1G'
+
+    testLogging {
+        events "passed","skipped", "failed", "standardOut", "standardError"
+        exceptionFormat "full"
+    }
 }
+
+//    retry {
+//        maxRetries = 3 // к плагину, org.gradle.test-retry который позволяет перезапускать упавшие тесты.
+//    }
