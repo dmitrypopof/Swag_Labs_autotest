@@ -2,7 +2,6 @@ package com.swag_labs.page;
 
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
-import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -12,17 +11,24 @@ public class MainPage {
     private final SelenideElement emailField= $(By.id("user-name"));
     private final SelenideElement passField = $(By.id("password"));
     private final SelenideElement butLogin = $(By.id("login-button"));
+    private final SelenideElement titleLogoSite = $(By.className("app_logo"));
 
-   @Step("РђРІС‚РѕСЂРёР·Р°С†РёСЏ {user},{password}")
-    public MainPage logStdUser(String user, String password){
-        emailField.setValue(user);
+   @Step("Авторизация")
+    public MainPage logStdUser(String strings, String password){
+        emailField.setValue(strings);
         passField.setValue(password);
         return this;
     }
 
-    @Step("РєР»РёРє Р’РѕР№С‚Рё")
+    @Step("клик Войти")
     public MainPage pressEnter(){
         butLogin.click();
         return this;
     }
+
+    @Step("Проверка надписи названия сайта")
+    public String isOpenLogin () {
+        return  titleLogoSite.getText();
+    }
+
 }

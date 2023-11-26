@@ -1,7 +1,7 @@
 plugins {
     id 'java'
     id "io.qameta.allure" version "2.11.2"
-    //id "org.gradle.test-retry" version "1.5.3" //РїР»Р°РіРёРЅ, РєРѕС‚РѕСЂС‹Р№ РїРѕР·РІРѕР»СЏРµС‚ РїРµСЂРµР·Р°РїСѓСЃРєР°С‚СЊ СѓРїР°РІС€РёРµ С‚РµСЃС‚С‹.
+    //id "org.gradle.test-retry" version "1.5.3" //плагин, который позволяет перезапускать упавшие тесты.
 
 }
 
@@ -16,8 +16,9 @@ dependencies {
     testImplementation platform('org.junit:junit-bom:5.9.1')
     testImplementation 'org.junit.jupiter:junit-jupiter'
     testImplementation 'com.codeborne:selenide:6.19.1'
+    testImplementation 'io.rest-assured:rest-assured:5.3.2'
 
-    //СѓР±СЂР°С‚СЊ РЅР°РІСЏР·С‡РёРІСѓСЋ РѕС€РёР±РєСѓ Рѕ slf4j:
+    //убрать навязчивую ошибку о slf4j:
     testImplementation("org.slf4j:slf4j-simple:2.0.0")
     implementation("com.typesafe:config:1.4.2")
     implementation("org.assertj:assertj-core:3.23.1")
@@ -45,5 +46,5 @@ tasks.named('test', Test) {
 }
 
 //    retry {
-//        maxRetries = 3 // Рє РїР»Р°РіРёРЅСѓ, org.gradle.test-retry РєРѕС‚РѕСЂС‹Р№ РїРѕР·РІРѕР»СЏРµС‚ РїРµСЂРµР·Р°РїСѓСЃРєР°С‚СЊ СѓРїР°РІС€РёРµ С‚РµСЃС‚С‹.
+//        maxRetries = 3 // к плагину, org.gradle.test-retry который позволяет перезапускать упавшие тесты.
 //    }

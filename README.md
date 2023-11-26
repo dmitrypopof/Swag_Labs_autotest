@@ -1,9 +1,11 @@
 # Swag_Labs_autotest
-UI-С‚РµСЃС‚РёСЂРѕРІР°РЅРёРµ (Selenide, JUnit 5, Allure)
+https://www.saucedemo.com/
 
-РЎРµР»РµРєС‚РѕСЂС‹ РІ Selenide:
+UI-тестирование (Selenide, JUnit 5, Allure)
 
-РџРѕР»РЅС‹Р№ СЃРїРёСЃРѕРє СЃРµР»РµРєС‚РѕСЂРѕРІ РјРѕР¶РЅРѕ РёР·СѓС‡РёС‚СЊ РІ РґРѕРєСѓРјРµРЅС‚Р°С†РёРё
+Селекторы в Selenide:
+
+Полный список селекторов можно изучить в документации
 
 - byClassName
 - byId
@@ -16,15 +18,15 @@ UI-С‚РµСЃС‚РёСЂРѕРІР°РЅРёРµ (Selenide, JUnit 5, Allure)
     $(...).click(); 
     $(byClassName("profile__title")).getText(); 
 
-    $(byClassName("page_heading")).shouldHave(exactText("Swag Labs")); - СЃСЂР°РІРЅРµРЅРёРµ Р·РЅР°С‡РµРЅРёР№
+    $(byClassName("page_heading")).shouldHave(exactText("Swag Labs")); - сравнение значений
     
-    Integer countCards = $$(byClassName("card__title")).size(); -  СЃРєРѕР»СЊРєРѕ РЅР° СЃС‚СЂР°РЅРёС†Рµ РІРµР±-СЌР»РµРјРµРЅС‚РѕРІ
+    Integer countCards = $$(byClassName("card__title")).size(); -  сколько на странице веб-элементов
     
     $(byTagName("button").shouldBe(clickable));
 
-    $("#submit").shouldBe(enabled).click(); - РґРѕР¶РґР°С‚СЊСЃСЏ, РїРѕРєР° РєРЅРѕРїРєР° СЃС‚Р°РЅРµС‚ Р°РєС‚РёРІРЅРѕР№, Р° РїРѕС‚РѕРј РєР»РёРєРЅСѓС‚СЊ РїРѕ РЅРµР№ (РѕР¶РёРґР°РЅРёРµ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ 4000 РјСЃРµРє)
+    $("#submit").shouldBe(enabled).click(); - дождаться, пока кнопка станет активной, а потом кликнуть по ней (ожидание по умолчанию 4000 мсек)
 
-    shouldBe(Condition, milliseconds) - СѓСЃС‚Р°РЅРѕРІРєР° РІСЂРµРјРµРЅРё РѕР¶РёРґР°РЅРёСЏ РІСЂСѓС‡РЅСѓСЋ
+    shouldBe(Condition, milliseconds) - установка времени ожидания вручную
     
         
 
