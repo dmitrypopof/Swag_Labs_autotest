@@ -13,7 +13,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 public class Web_Test extends BaseTest{
     @ParameterizedTest
     @DisplayName("Авторизация пользователя")
-    @Description("описание")
+    @Description("Тестирование авторизации пользователей {0},{1}")
     @CsvSource({
             "standard_user, secret_sauce",
             "locked_out_user, secret_sauce",
@@ -28,5 +28,29 @@ public class Web_Test extends BaseTest{
                 .pressEnter();
         String actual = page.isOpenLogin();
         Assertions.assertEquals("Swag Labs",actual);
+    }
+
+
+    @Test
+    @DisplayName("Покупка одного товара")
+    @Description("описание")
+    public void checkPurchaseOfGoods(){
+        page
+                .logStdUser("standard_user","secret_sauce")
+                .pressEnter();
+
+        page.selectProduct("Sauce Labs Backpack");
+
+        page
+                .pressButtonAddToCard()
+                .pressBasket()
+                .checkoutProduct()
+                .inputInformation("Fedor","Dostoevski","12345687")
+                .pressContinue();
+
+        page.pressFinish();
+        String actual = page.getTextCheckoutComplete();
+        Assertions.assertEquals("Checkout: Complete!",actual);
+
     }
 }
