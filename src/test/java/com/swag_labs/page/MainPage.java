@@ -12,7 +12,7 @@ public class MainPage {
     private final SelenideElement passField = $(By.id("password"));
     private final SelenideElement butLogin = $(By.id("login-button"));
     private final SelenideElement titleLogoSite = $(By.className("app_logo"));
-    private final SelenideElement addProductButton = $(By.id("add-to-cart-sauce-labs-backpack")); // добавить в корзину
+    private final SelenideElement addToCartSauceLabsBackpack = $(By.id("add-to-cart-sauce-labs-backpack")); // добавить в корзину
     private final SelenideElement backToProductsBut = $(By.id("back-to-products")); // кнопка назад
     private final SelenideElement basketButton = $(By.id("shopping_cart_container")); // кнопка корзина
     private final SelenideElement checkoutButton = $(By.id("checkout")); //кнопка оформить покупку
@@ -47,9 +47,14 @@ public class MainPage {
        return this;
    }
 
-    @Step("Нажать на кнопку добавить в корзину")
-    public MainPage pressButtonAddToCard(){
-       addProductButton.click();
+    @Step("Нажать на кнопку  {0}")
+    public MainPage pressButton(String nameButton){
+        $(By.xpath("//button[text()='"+nameButton+"']")).click();
+        return this;
+    }
+    @Step("Нажать на кнопку добавить в корзину , без перехода на отдельную страницу товара {0}")
+    public MainPage pressButtonAddToCard(String nameProduct){
+       $(By.xpath("//a/div[text()='" + nameProduct + "']//..//..//..//button")).click();
        return this;
     }
 
@@ -85,8 +90,14 @@ public class MainPage {
         return this;
     }
 
-    @Step("Проверка успешного завершения")
+    @Step("Проверка успешной покупки")
     public String getTextCheckoutComplete(){
        return $(By.xpath("//span[@class='title']")).getText();
     }
+
+    @Step("Проверка сообщения о невозможности купить")
+    public String getTextNotComplete(){
+        return $(By.xpath("//div[@class='error-message-container error']")).getText();
+    }
+
 }

@@ -42,7 +42,7 @@ public class Web_Test extends BaseTest{
         page.selectProduct("Sauce Labs Backpack");
 
         page
-                .pressButtonAddToCard()
+                .pressButton("Add to cart")
                 .pressBasket()
                 .checkoutProduct()
                 .inputInformation("Fedor","Dostoevski","12345687")
@@ -52,5 +52,23 @@ public class Web_Test extends BaseTest{
         String actual = page.getTextCheckoutComplete();
         Assertions.assertEquals("Checkout: Complete!",actual);
 
+    }
+
+    @Test
+    @DisplayName("Купить, но не заполнять инфо о покупателе")
+    @Description("описание")
+    public void checkNotAddInfo(){
+        page
+                .logStdUser("standard_user","secret_sauce")
+                .pressEnter();
+
+        page
+                .pressButtonAddToCard("Sauce Labs Bolt T-Shirt")
+                .pressBasket()
+                .checkoutProduct()
+                .pressContinue();
+        String actual = page.getTextNotComplete();
+        System.out.println("actual: "+actual);
+        Assertions.assertEquals("Error: First Name is required",actual);
     }
 }
