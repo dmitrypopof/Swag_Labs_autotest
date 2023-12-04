@@ -12,8 +12,8 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 public class Web_Test extends BaseTest{
     @ParameterizedTest
-    @DisplayName("Авторизация пользователя")
-    @Description("Тестирование авторизации пользователей {0},{1}")
+    @DisplayName("User authorization")
+    @Description("Testing user authorization {0},{1}")
     @CsvSource({
             "standard_user, secret_sauce",
             "locked_out_user, secret_sauce",
@@ -32,8 +32,8 @@ public class Web_Test extends BaseTest{
 
 
     @Test
-    @DisplayName("Покупка одного товара")
-    @Description("описание")
+    @DisplayName("Purchase of one product")
+    @Description("description")
     public void checkPurchaseOfGoods(){
         page
                 .logStdUser("standard_user","secret_sauce")
@@ -55,8 +55,8 @@ public class Web_Test extends BaseTest{
     }
 
     @Test
-    @DisplayName("Купить, но не заполнять инфо о покупателе")
-    @Description("описание")
+    @DisplayName("Buy, but do not fill in the information about the buyer")
+    @Description("description")
     public void checkNotAddInfo(){
         page
                 .logStdUser("standard_user","secret_sauce")
